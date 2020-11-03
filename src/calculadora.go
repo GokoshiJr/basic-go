@@ -11,28 +11,32 @@ import (
 func main() {
 	// creamos un objeto Scanner
 	scanner := bufio.NewScanner(os.Stdin)
-
-	fmt.Print("Ingrese una operacion: ")
+	fmt.Print("\nIngrese una operacion: ")
 	scanner.Scan()
 	operacion := scanner.Text()
 
-	// fmt.Println(operacion)	
-	valores := strings.Split(operacion, "+")
-	// fmt.Println(valores)
-
-	// strcon.Atoi lo pasa de string a enteros
-	operador1, err1 := strconv.Atoi(valores[0])
-	operador2, err2 := strconv.Atoi(valores[1])
-	// fmt.Println("Resultado", valores[0] + valores[1])
+	operador := "-"
+	numeros := strings.Split(operacion, operador)
+	num1, err1 := strconv.Atoi(numeros[0])
+	num2, err2 := strconv.Atoi(numeros[1])
 
 	// nil = null
-	if (err1 != nil || err2 != nil) {
-		fmt.Println("Error1", err1)
-		fmt.Println("Error2", err2)
+	if (err1 != nil ) { 
+		fmt.Println("Error1", err1) 
+	} else if (err2 != nil) {
+		fmt.Println("Error2", err2) 
 	} else {
-		fmt.Println("Operador 1:", operador1)
-		fmt.Println("Operador 2:", operador2)
-		fmt.Println("Resultado:", operador1 + operador2)
+		switch operador {
+			case "+":
+				fmt.Println("Resultado:", num1 + num2)
+			case "-":
+				fmt.Println("Resultado:", num1 - num2)
+			case "*":
+				fmt.Println("Resultado:", num1 * num2)
+			case "/":
+				fmt.Println("Resultado:", num1 / num2)
+			default:
+				fmt.Println(operador, "No soportado")
+		}
 	}
-
 }
