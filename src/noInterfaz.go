@@ -1,12 +1,13 @@
+/*
 package main
 
 import("fmt")
 
 func main() {
-	perro1 := perro{}
+	perro := perro{}
 	moverPerro(perro1)
 
-	pez1 := pez{}
+	pez := pez{}
 	moverPez(pez1)
 
 	pajaro := pajaro{}
@@ -48,3 +49,4 @@ func (pajaro) volar() string {
 func moverPajaro(p pajaro) {
 	fmt.Println(p.volar())
 }
+*/

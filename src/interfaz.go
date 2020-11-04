@@ -1,46 +1,41 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import("fmt")
 
 func main() {
-	figuras := make([]area, 0)
-	figuras = append(figuras, &cuadrado{lado: 4.5})
-	figuras = append(figuras, &triangulo{base: 2.25, altura: 10})
-	figuras = append(figuras, &circulo{radio: 2.8})
-	for _, f := range figuras {
-		f.calcularArea()
-	}
+	perro1 := perro{}
+	moverAnimal(perro1)
+	pez1 := pez{}
+	moverAnimal(pez1)
+	pajaro1 := pajaro{}
+	moverAnimal(pajaro1)
 }
 
-type area interface {
-	calcularArea() 
+type animal interface {
+	// los structs que implementan el metodo mover, 
+	// implementan la interfaz animal o tipo animal 
+	// sin usar palabras claves
+	mover() string
 }
 
-type cuadrado struct {
-	lado float64
+func moverAnimal(a animal) {
+	fmt.Println(a.mover())
 }
 
-func (c *cuadrado) calcularArea()  {
-	fmt.Println("Cuadrado, Area:", math.Pow(c.lado, 2))
-} 
+type perro struct {}
 
-type circulo struct {
-	radio float64
+func (perro) mover() string {
+	return "Soy un perro y camino"
 }
 
-func (c *circulo) calcularArea() {
-	fmt.Println("Circulo, Area:", math.Pi * math.Pow(c.radio, 2))
+type pez struct {}
+
+func (pez) mover() string {
+	return "Soy un pez y estoy nadando"
 }
 
-type triangulo struct {
-	base, altura float64
+type pajaro struct {}
+
+func (pajaro) mover() string {
+	return "Soy un pajaro y estoy volando"
 }
-
-func (t *triangulo) calcularArea() {
-	fmt.Println("Triangulo, Area:", (t.base * t.altura) / 2)
-}
-
-
