@@ -26,10 +26,32 @@ func main() {
 		},
 	}
 
-	fmt.Println(listaTareas.tasks[0])
 	listaTareas.agregarALista(t3)
-	fmt.Println(len(listaTareas.tasks))
 
+	for i := 0; i < len(listaTareas.tasks); i++ {
+		fmt.Printf("Tarea %d %+v\n", i, listaTareas.tasks[i].nombre)
+	}
+
+	// equivalente al for each
+	for i, tarea := range listaTareas.tasks {
+		fmt.Printf("Tarea %d %+v\n", i, tarea.nombre)
+	}
+
+	// uso del break
+	for i := 0; i < 10; i++ {
+		if i == 5 {
+			break // rompe el ciclo
+		}
+		fmt.Println(i)
+	}
+
+	// uso del continue
+	for i := 0; i < 10; i++ {
+		if i == 5 {
+			continue // solamente rompe una iteracion
+		}
+		fmt.Println(i)
+	}
 }
 
 type task struct {
