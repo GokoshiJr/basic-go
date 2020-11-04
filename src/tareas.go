@@ -16,20 +16,35 @@ func main() {
 	}
 
 	t3 := &task {
-		nombre: "Completar mi curso de Node Js",
+		nombre: "Completar mi curso de Dibujo",
 		descripcion: "Haciendolo en Platzi",
 	}
 
-	listaTareas := &taskList {
+	t4 := &task {
+		nombre: "Completar mi curso de Cocina",
+		descripcion: "Haciendolo en Platzi",
+	}
+
+	listaTareas1 := &taskList {
 		tasks: []*task{
 			t1, t2,
 		},
 	}
 
-	listaTareas.agregarALista(t3)
-	// listaTareas.imprimirLista()
-	listaTareas.tasks[0].marcarCompleta()
-	listaTareas.imprimirCompletadas()
+	listaTareas2 := &taskList {
+		tasks: []*task{
+			t3, t4,
+		},
+	}
+
+	mapaTareas := make(map[string] *taskList)
+	mapaTareas["Julio"] = listaTareas1
+	mapaTareas["Maria"] = listaTareas2
+
+	fmt.Println("Tareas de Julio")
+	mapaTareas["Julio"].imprimirLista()
+	fmt.Println("Tareas de Maria")
+	mapaTareas["Maria"].imprimirLista()
 }
 
 type task struct {
