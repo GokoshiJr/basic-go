@@ -6,7 +6,7 @@ import (
 /* 
 	En Go hay dos tipos de parámetros que podemos usar en nuestras funciones o métodos:
 
-	Pass by value (por valor) : Aquí la función ara una copia de la variable que se esta pasando y modificara la copia.
+	Pass by value (por valor) : Aquí la función realiza una copia de la variable que se esta pasando y modificara la copia.
 
 	Pass by pointer/reference (por puntero) : Aquí la función obtendrá un puntero que apunta a la misma dirección donde esta el valor de la variable o struc 
 */
@@ -16,7 +16,7 @@ func main() {
 	fmt.Println(&x) // mostramos la direccion en memoria
 	// cambiarValor(x) // las direcciones son diferentes, porq hace una copia de esta variable
 	y := &x
-	fmt.Println(*y)
+	fmt.Println(*y) // operador *, va a la direccion en memoria y trae el valor
 }
 
 func cambiarValor(a int) {

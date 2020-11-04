@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	t := task {
+	t := &task {
 		nombre: "Completar mi curso de Go",
 		descripcion: "Haciendolo en Platzi",
 	}
@@ -18,15 +18,15 @@ func main() {
 }
 
 /* Receivers de tipo task */
-func (t task) marcarCompleta() {
+func (t *task) marcarCompleta() {
 	t.completado = true
 }
 
-func (t task) actualizarDescripcion(descripcion string) {
+func (t *task) actualizarDescripcion(descripcion string) {
 	t.descripcion = descripcion
 }
 
-func (t task) actualizarNombre(nombre string) {
+func (t *task) actualizarNombre(nombre string) {
 	t.nombre = nombre
 }
 
