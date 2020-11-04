@@ -27,31 +27,9 @@ func main() {
 	}
 
 	listaTareas.agregarALista(t3)
-
-	for i := 0; i < len(listaTareas.tasks); i++ {
-		fmt.Printf("Tarea %d %+v\n", i, listaTareas.tasks[i].nombre)
-	}
-
-	// equivalente al for each
-	for i, tarea := range listaTareas.tasks {
-		fmt.Printf("Tarea %d %+v\n", i, tarea.nombre)
-	}
-
-	// uso del break
-	for i := 0; i < 10; i++ {
-		if i == 5 {
-			break // rompe el ciclo
-		}
-		fmt.Println(i)
-	}
-
-	// uso del continue
-	for i := 0; i < 10; i++ {
-		if i == 5 {
-			continue // solamente rompe una iteracion
-		}
-		fmt.Println(i)
-	}
+	// listaTareas.imprimirLista()
+	listaTareas.tasks[0].marcarCompleta()
+	listaTareas.imprimirCompletadas()
 }
 
 type task struct {
@@ -88,4 +66,18 @@ func (t *taskList) eliminarDeLista(index int) {
 	Los tres puntos al final de t.task[index + 1:]… (operador ellipsis) es porque el segundo parámetro del append no es un slice y la función append recibe un item, con este operador lo que hacemos es decirle a go que tome ese slice y lo “desempaquete” para que sean muchos parámetros de 1 solo item y no un slice. t.tasks = append(t.tasks, task1, task2, task3)
 	*/
 	t.tasks = append(t.tasks[:index], t.tasks[index + 1:]...)
+}
+
+func (t *taskList) imprimirLista() {
+	for _, tarea := range t.tasks {
+		fmt.Printf("{Nombre:%s, Descripcion:%s}\n", tarea.nombre, tarea.descripcion)
+	}
+}
+
+func (t *taskList) imprimirCompletadas() {
+	for _, tarea := range t.tasks {
+		if tarea.completado {
+			fmt.Printf("{Nombre:%s, Descripcion:%s}\n", tarea.nombre, tarea.descripcion)	
+		}
+	}
 }
