@@ -19,16 +19,30 @@ func main() {
 		"http://twitter.com",
 		"http://github.com",
 	}
-	
-	for _, servidor := range servidores {
-		// go, crea un nuevo hilo/proceso para que se ejecute independientemente de main()
-		go revisarServidor(servidor, canal)
+
+	// no hay while en go, hay que usar el for como si fuera el while
+	i := 0
+	for {
+		if i > 2 {
+			break
+		}
+		for _, servidor := range servidores {
+			// go, crea un nuevo hilo/proceso para que se ejecute independientemente de main()
+			go revisarServidor(servidor, canal)
+		}
+		time.Sleep(1 * time.Second)
+		fmt.Println(<- canal)
+		i++
 	}
 
+	
+
 	// <- canal, pasa la data
+	/* 
 	for i:=0; i<len(servidores); i++ {
 		fmt.Println(<- canal)
-	}
+	} 
+	*/
 
 	tiempoTotal := time.Since(inicio)
 	fmt.Println("Tiempo transcurrido:", tiempoTotal)
