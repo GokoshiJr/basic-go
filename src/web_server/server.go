@@ -25,3 +25,7 @@ func (servidor *Server) Listen() error {
 	}
 	return nil
 }
+
+func (servidor *Server) Handle(path string, handler http.HandlerFunc) {
+	servidor.router.reglas[path] = handler 
+}
