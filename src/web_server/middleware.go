@@ -8,7 +8,7 @@ import (
 func CheckAuth() Middleware {
 	return func(f http.HandlerFunc) http.HandlerFunc {
 		return func(w http.ResponseWriter, r *http.Request) {
-			flag := false
+			flag := true
 			fmt.Println("Checking Authentication")
 			if flag {
 				f(w, r)

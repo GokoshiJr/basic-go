@@ -31,6 +31,9 @@ func (servidor *Server) Handle(path string, handler http.HandlerFunc) {
 }
 
 // si agregamos los ... indicamos que no sabemos la cantidad de parametros que van a llegar
-func (servidor *Server) AddMiddleware(f http.HandlerFunc, middlewares ...Middleware) {
-
+func (servidor *Server) AddMiddleware(f http.HandlerFunc, middlewares ...Middleware) http.HandlerFunc {
+	for _, middleware := range middlewares {
+		f = middleware(f)
+	}
+	return f
 }
