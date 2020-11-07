@@ -26,8 +26,12 @@ func (servidor *Server) Listen() error {
 	return nil
 }
 
-func (servidor *Server) Handle(path string, handler http.HandlerFunc) {
-	servidor.router.reglas[path] = handler 
+func (servidor *Server) Handle(path string, method string, handler http.HandlerFunc) {
+	_, exist := servidor.router.reglas[path]
+	if !exist {
+		servidor.router.reglas[path] = make(map[string]http.HandlerFunc)
+	}
+	servidor.router.reglas[path][method] = handler 
 }
 
 // si agregamos los ... indicamos que no sabemos la cantidad de parametros que van a llegar
