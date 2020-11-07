@@ -1,17 +1,24 @@
 package main
 
+import (
+	"net/http"
+)
+
 type Server struct {
 	port string
+	router *Router
 }
 
 func NewServer(port string) *Server{
 	return &Server {
 		port: port,
+		router: NewRouter(),
 	}
 }
 
 func (servidor *Server) Listen() error {
 	// puerto, handler
+	http.Handle("/", servidor.router) // raiz de nuestro servidor o punto de entrada
 	err := http.ListenAndServe(servidor.port, nil)
 	if err != nil {
 		return err
