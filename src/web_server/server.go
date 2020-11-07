@@ -29,3 +29,8 @@ func (servidor *Server) Listen() error {
 func (servidor *Server) Handle(path string, handler http.HandlerFunc) {
 	servidor.router.reglas[path] = handler 
 }
+
+// si agregamos los ... indicamos que no sabemos la cantidad de parametros que van a llegar
+func (servidor *Server) AddMiddleware(f http.HandlerFunc, middlewares ...Middleware) {
+
+}
